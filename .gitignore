@@ -1,2 +1,3 @@
 *.pyc
-DS.Store
+.DS_Store
+mysite/settings_local.py
