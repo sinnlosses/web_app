@@ -1,6 +1,30 @@
 version: '3'
 
 services:
+  frontend:
+    build:
+      context: frontend
+    tty: true
+    volumes:
+      - ./frontend:/frontend
+    ports:
+      - 3000:3000
+    environment:
+      - WATCHPACK_POLLING=true
+    # command: sh -c "npm run dev"
+
+  backend:
+    build:
+      context: backend
+    tty: true
+    volumes:
+      - ./backend:/backend
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    # command: python3 manage.py runserver 0.0.0.0:8000
+
   db:
     image: postgres
     environment:
@@ -9,16 +33,6 @@ services:
       - POSTGRES_PASSWORD=password
     volumes:
       - postgres_data:/var/lib/postgresql/data
-  web:
-    build: .
-    tty: true
-    # command: python3 manage.py runserver 0.0.0.0:8000
-    volumes:
-      - ../:/code
-    ports:
-      - 8000:8000
-    depends_on:
-      - db
 
   pgadmin4:
     container_name: pgadmin4
