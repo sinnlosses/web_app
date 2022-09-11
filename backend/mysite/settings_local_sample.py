@@ -3,6 +3,7 @@
 #         'ENGINE': 'django.db.backends.sqlite3',
 #     }
 # }
+SECRET_KEY = 'XXXXXXX'
 
 DATABASES = {
     'default': {

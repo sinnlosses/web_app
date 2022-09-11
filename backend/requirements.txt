@@ -1,3 +1,5 @@
 Django
 psycopg2
 djangorestframework
+flake8
+autopep8
